@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daraz Online Shopping - Best Deals & Prices in Pakistan</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Unified Single Navigation Bar (Screenshot 1 Exact Match) -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <!-- Top Utility Links (Login, Sign Up, Support, App, Urdu Text) -->
+            <div class="topbar-utility-links" id="topbar-utility-nav">
+                <a href="#" onclick="showToast('Download Daraz App for More Discounts!'); return false;">SAVE MORE ON APP</a>
+                <a href="#" onclick="showToast('Redirecting to Seller Center...'); return false;">SELL ON DARAZ</a>
+                <a href="#" onclick="showToast('Daraz Customer Help Center'); return false;">HELP & SUPPORT</a>
+                <span id="user-nav-block">
+                    <a href="#" onclick="showLoginView(); return false;">LOGIN</a>
+                    <a href="#" onclick="showSignupView(); return false;">SIGN UP</a>
+                </span>
+                <a href="#" onclick="showToast('Language changed to Urdu / زبان تبدیل کی گئی'); return false;" class="ms-3">زبان تبدیل کریں</a>
+            </div>
+
+            <!-- Main Row (Logo, Search Bar, Search Icon, Cart Icon) -->
+            <div class="topbar-main-row">
+                <div class="logo-box" onclick="showHomeView()">
+                    <img src="./darazlogo.png" class="logo" alt="Daraz Logo">
+                    <span class="brand">Daraz</span>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-box-row">
+                        <input type="text" id="search-input" placeholder="Search in Daraz" class="search">
+                        <button type="button" id="search-btn" class="search-btn-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <!-- Cart Icon Placed Immediately Next to Search Bar/Icon -->
+                        <div class="cart-icon-wrapper" id="nav-cart-icon" title="View Cart / Checkout">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+                        </div>
+                    </div>
+                    <!-- Quick search suggestions bar under search input (Visible on Product Details View) -->
+                    <div class="search-quick-tags" id="navbar-search-tags">
+                        <span onclick="filterByTag('watch for boys')">watch for boys</span> |
+                        <span onclick="filterByTag('makeup')">makeup</span> |
+                        <span onclick="filterByTag('kashmiri bangles')">kashmiri bangles</span> |
+                        <span onclick="filterByTag('bags for girls')">bags for girls</span> |
+                        <span onclick="filterByTag('airpods')">airpods</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Categories Navigation Bar -->
+    <div class="sub-categories-bar">
+        <div class="categories-dropdown-btn" onclick="showHomeView(); showToast('Browsing All Categories');">
+            <span>Categories</span>
+            <i class="fa-solid fa-chevron-down fs-8"></i>
+        </div>
+        <div class="d-flex gap-4 text-muted fs-7">
+            <span class="cursor-pointer" onclick="filterByCategory('Beauty')">Beauty & Health</span>
+            <span class="cursor-pointer" onclick="filterByCategory('Electronics')">Electronics</span>
+            <span class="cursor-pointer" onclick="filterByCategory('Fashion')">Fashion</span>
+            <span class="cursor-pointer" onclick="filterByCategory('Groceries')">Groceries</span>
+            <span class="cursor-pointer" onclick="filterByCategory('Home')">Home & Living</span>
+        </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER 1: HOMEPAGE VIEW -->
+    <main id="home-view" class="page-view">
+        
+        <!-- PROMOTIONAL ADVERTISEMENT BANNER SECTION (Exact Screenshot Match - Sharp Corners & Flush Alignment) -->
+        <div class="promo-banner-wrapper container-fluid px-4 my-2">
+            <div class="row g-2 align-items-stretch">
+                <!-- Main Hero Banner (Left Side ~ 80% width) -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="hero-banner-card position-relative overflow-hidden cursor-pointer" onclick="showToast('Redirecting to 8.8 Mega Azadi Sale Deals!')">
+                        <img src="./azadi_sale_banner.png" class="w-100 h-100 object-fit-cover" alt="8.8 Mega Azadi Sale Banner">
+                        
+                        <!-- Carousel Indicator Dots -->
+                        <div class="carousel-dots-indicator position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-2">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Try Daraz App Card (~ 20% width) -->
+                <div class="col-lg-3 col-md-4">
+                    <div class="daraz-app-card bg-white p-3 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <!-- Header with Daraz icon and Title -->
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <img src="./darazlogo.png" style="width: 20px; height: 20px; object-fit: contain;" alt="Daraz Logo">
+                                <span class="fw-bold fs-7 text-dark text-uppercase tracking-wider">TRY DARAZ APP</span>
+                            </div>
+
+                            <!-- Inner Pink Gradient App Promo Card -->
+                            <div class="app-feature-card p-3 mb-2 text-white position-relative" style="background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 50%, #ff5e62 100%); border-radius: 0;">
+                                <div class="badge bg-warning text-dark fw-bold mb-2 fs-8 px-2 py-1" style="border-radius: 0;"><i class="fa-solid fa-star me-1"></i>4.8 Rated</div>
+                                <h6 class="fw-bold mb-2 fs-7">Download the App now</h6>
+
+                                <div class="d-flex align-items-center gap-2 mb-2 bg-white p-2 text-dark" style="border-radius: 0;">
+                                    <div class="bg-white d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; border-radius: 0;">
+                                        <i class="fa-solid fa-truck-fast text-success fs-7"></i>
+                                    </div>
+                                    <span class="fs-8 fw-bold text-dark">Free Shipping</span>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 bg-white p-2 text-dark" style="border-radius: 0;">
+                                    <div class="bg-white d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; border-radius: 0;">
+                                        <i class="fa-solid fa-ticket text-danger fs-7"></i>
+                                    </div>
+                                    <span class="fs-8 fw-bold text-dark">Exclusive Vouchers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom QR Code & App Store Badges -->
+                        <div class="text-center">
+                            <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                                <div class="qr-code-box border p-1 bg-white" style="border-radius: 0;">
+                                    <svg width="50" height="50" viewBox="0 0 100 100" fill="#212121">
+                                        <rect width="100" height="100" fill="white"/>
+                                        <path d="M0,0 h30 v30 h-30 z M40,0 h20 v10 h-20 z M70,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z M80,10 h10 v10 h-10 z M0,40 h10 v20 h-10 z M30,40 h30 v10 h-30 z M70,40 h10 v10 h-10 z M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z M40,70 h20 v30 h-20 z M70,70 h30 v30 h-30 z M80,80 h10 v10 h-10 z"/>
+                                    </svg>
+                                </div>
+                                <div class="d-flex flex-column gap-1">
+                                    <button class="btn btn-dark btn-sm fs-9 py-1 px-2 text-start d-flex align-items-center gap-1" style="border-radius: 0;" onclick="showToast('Downloading Daraz iOS App')">
+                                        <i class="fa-brands fa-apple fs-6"></i>
+                                        <span>App Store</span>
+                                    </button>
+                                    <button class="btn btn-dark btn-sm fs-9 py-1 px-2 text-start d-flex align-items-center gap-1" style="border-radius: 0;" onclick="showToast('Downloading Daraz Android App')">
+                                        <i class="fa-brands fa-google-play fs-7"></i>
+                                        <span>Google Play</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="fs-9 text-muted fw-semibold">Download the App Now!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Shampoo Banner Promotion (Matches Screenshot 2 Showcase) -->
+        <div class="container-fluid px-4 mt-3">
+            <div class="bg-dark text-white p-3 rounded-3 d-flex align-items-center justify-content-between shadow-sm cursor-pointer" onclick="showProductDetail('loreal-shampoo')" style="background: linear-gradient(135deg, #f57224 0%, #d05315 100%);">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="./loreal_shampoo.png" alt="L'Oreal Shampoo" class="rounded bg-white p-1" style="width: 75px; height: 75px; object-fit: contain;">
+                    <div>
+                        <span class="badge bg-warning text-dark fw-bold mb-1">8.8 FLASH SALE BESTSELLER</span>
+                        <h5 class="fw-bold mb-0">L'Oreal Paris Elvive Hyaluron Pure Shampoo - 175ML</h5>
+                        <p class="mb-0 fs-7 opacity-90">Special Price: <strong>Rs. 467</strong> <span class="text-decoration-line-through text-light opacity-75 ms-2">Rs. 599</span> (-22% OFF)</p>
+                    </div>
+                </div>
+                <button class="btn btn-light text-orange fw-bold px-4" style="color: #f57224;">SHOP NOW</button>
+            </div>
+        </div>
+
+        <h1 class="section-title">Flash Sale</h1>
+
+        <div class="section">
+            <div class="section-header">
+                <span>On Sale Now</span>
+                <button onclick="showToast('Showing all Flash Sale deals!')">Shop All Products</button>
+            </div>
+
+            <div class="products">
+                <!-- Featured Screenshot Item 1 -->
+                <div class="box" onclick="showProductDetail('loreal-shampoo')">
+                    <img src="./loreal_shampoo.png" alt="L'Oreal Shampoo">
+                    <p class="title">L'Oreal Paris Elvive Hyaluron Pure Shampoo - For Oily Scalp 175ML</p>
+                    <p class="price">Rs.467</p>
+                    <p class="old-price">Rs.599 <span class="discount">-22%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('ztr-treadmill')">
+                    <img src="./ZTR-15 Treadmill.webp" alt="ZTR-15 Treadmill">
+                    <p class="title">ZTR-15 Treadmill Heavy Duty Exercise Machine</p>
+                    <p class="price">Rs.96,499</p>
+                    <p class="old-price">Rs.320,000 <span class="discount">-70%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('ensure-milk')">
+                    <img src="./Ensure.webp" alt="Ensure Powder">
+                    <p class="title">Ensure Chocolate Milk Powder 400g</p>
+                    <p class="price">Rs.2,899</p>
+                    <p class="old-price">Rs.3,135 <span class="discount">-8%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('sereno-massage-chair')">
+                    <img src="./mass.webp" alt="Massage Chair">
+                    <p class="title">Sereno Presage Massage Chair, Full Body Massage, Zero Gravity</p>
+                    <p class="price">Rs.155,899</p>
+                    <p class="old-price">Rs.290,000 <span class="discount">-46%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('repair-tape')">
+                    <img src="./Tape.webp" alt="Waterproof Tape">
+                    <p class="title">Waterproof Leakage Repair Tape Heavy Duty Super Strong</p>
+                    <p class="price">Rs.61</p>
+                    <p class="old-price">Rs.100 <span class="discount">-39%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('silicon-ice-roller')">
+                    <img src="./Silicon Ice.webp" alt="Ice Roller">
+                    <p class="title">Silicone Ice Cube Roller Massager for Face - Eyes and Neck</p>
+                    <p class="price">Rs.166</p>
+                    <p class="old-price">Rs.250 <span class="discount">-34%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('mini-book-light')">
+                    <img src="./minibook.webp" alt="Book Light">
+                    <p class="title">Mini Book Light LED Clamp Reading Lamp Night Lights</p>
+                    <p class="price">Rs.239</p>
+                    <p class="old-price">Rs.618 <span class="discount">-61%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('black-tea')">
+                    <img src="./tea.webp" alt="Black Tea">
+                    <p class="title">Premium Leaf Black Tea 500G Strong Flavor</p>
+                    <p class="price">Rs.526</p>
+                    <p class="old-price">Rs.799 <span class="discount">-34%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('xiaomi-tv-43')">
+                    <img src="./xiomi.avif" alt="Xiaomi Smart TV">
+                    <p class="title">Xiaomi TV A 43″ FHD Smart Google TV (2026) – Bezel-less Metal Design</p>
+                    <p class="price">Rs.57,898</p>
+                    <p class="old-price">Rs.71,999 <span class="discount">-20%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('homecure-cream')">
+                    <img src="./homecure.webp" alt="Home cure cream">
+                    <p class="title">Home cure cream & sachet combo (guaranteed results)</p>
+                    <p class="price">Rs.1,154</p>
+                    <p class="old-price">Rs.1,412 <span class="discount">-18%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('butterfly-massager')">
+                    <img src="./butterfly.webp" alt="Butterfly Massager">
+                    <p class="title">Mini Butterfly Body Massager – Rechargeable EMS Muscle Pad</p>
+                    <p class="price">Rs.318</p>
+                    <p class="old-price">Rs.700 <span class="discount">-55%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('derma-roller')">
+                    <img src="./roller.webp" alt="Derma Roller">
+                    <p class="title">Derma Roller With 540 Micro Needle Skin Therapy 0.5mm</p>
+                    <p class="price">Rs.163</p>
+                    <p class="old-price">Rs.300 <span class="discount">-46%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('mesh-tape')">
+                    <img src="./repairtape.webp" alt="Window Mesh Tape">
+                    <p class="title">Window Screen Repair Tape Self Adhesive Mesh Tape</p>
+                    <p class="price">Rs.133</p>
+                    <p class="old-price">Rs.399 <span class="discount">-67%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('tapal-danedar')">
+                    <img src="./danadar.webp" alt="Tapal Danedar">
+                    <p class="title">Tapal Danedar 430gm Pouch CP-Save Rs 70</p>
+                    <p class="price">Rs.819</p>
+                    <p class="old-price">Rs.830 <span class="discount">-1%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('pack-powders')">
+                    <img src="./pack.webp" alt="Skincare Powders">
+                    <p class="title">Pack of 5 Powders + 2 Free Skincare Set</p>
+                    <p class="price">Rs.431</p>
+                    <p class="old-price">Rs.999 <span class="discount">-57%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('tresemme-shampoo')">
+                    <img src="./Tresseme.webp" alt="Tresemme Shampoo">
+                    <p class="title">Tresemme Keratin Smooth And Straight Shampoo 360ML</p>
+                    <p class="price">Rs.751</p>
+                    <p class="old-price">Rs.930 <span class="discount">-19%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('door-dust-stopper')">
+                    <img src="./Door Dust.webp" alt="Door Dust Stopper">
+                    <p class="title">Door Dust Stopper Draft & Insect All Sizes Available</p>
+                    <p class="price">Rs.50</p>
+                    <p class="old-price">Rs.399 <span class="discount">-87%</span></p>
+                </div>
+
+                <div class="box" onclick="showProductDetail('zext-pillow')">
+                    <img src="./zext.webp" alt="ZEXT Travel Pillow">
+                    <p class="title">ZEXT Cozy Travel Pillow U Shaped Neck Cushion</p>
+                    <p class="price">Rs.654</p>
+                    <p class="old-price">Rs.899 <span class="discount">-27%</span></p>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="section-title">Categories</h1>
+
+        <div class="categories">
+            <div class="cat" onclick="filterByCategory('Anklets')">
+                <img src="./Anklets.avif" alt="Anklets">
+                <p>Anklets</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Sport Backpacks')">
+                <img src="./sportsbackpacks.avif" alt="Sport Backpacks">
+                <p>Sport Backpacks</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Pasta Tools')">
+                <img src="./paste and noodle.avif" alt="Pasta Tools">
+                <p>Pasta, Noodle & Pizza Tools</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('SIM Tools')">
+                <img src="./sim tools.avif" alt="SIM Tools">
+                <p>SIM Tools</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Screen Protector')">
+                <img src="./screen protector.avif" alt="Screen Protector">
+                <p>Screen Protector</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Casserole Pots')">
+                <img src="./casselo ports.avif" alt="Casserole Pots">
+                <p>Casserole Pots</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Muzzles')">
+                <img src="./Muzzles.avif" alt="Muzzles">
+                <p>Muzzles</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Hoodies')">
+                <img src="./Hoodies & Sweatsshirts.avif" alt="Hoodies">
+                <p>Hoodies & Sweatshirts</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Toy Boxes')">
+                <img src="./Toy Boxes & Organisers.avif" alt="Toy Boxes">
+                <p>Toy Boxes & Organisers</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Pet Clippers')">
+                <img src="./Dogs & Cats Electric Clippers.avif" alt="Clippers">
+                <p>Dogs & Cats Electric Clippers</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Fixture Parts')">
+                <img src="./Fixture Parts & Components.avif" alt="Fixture Parts">
+                <p>Fixture Parts & Components</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Dining Sets')">
+                <img src="./Dinning Sets.avif" alt="Dining Sets">
+                <p>Dining Sets</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Microphones')">
+                <img src="./Microphones.avif" alt="Microphones">
+                <p>Microphones</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Bed Sheets')">
+                <img src="./Bed Sheets.avif" alt="Bed Sheets">
+                <p>Bed Sheets</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Leashes')">
+                <img src="./Leashes & Harnesses.avif" alt="Leashes">
+                <p>Leashes & Harnesses</p>
+            </div>
+
+            <div class="cat" onclick="filterByCategory('Donate')">
+                <img src="./Donate to Educate.avif" alt="Donate">
+                <p>Donate to Educate</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span>Just For You</span>
+            </div>
+
+            <div class="just-for-you">
+                <div class="box" onclick="showProductDetail('magsafe-case')">
+                    <img src="./cse.avif" alt="Magsafe Case">
+                    <p class="title">MAGSAFE JELLY CASE FOR SAMSUNG A06, A15, S24, S25 Ultra</p>
+                    <p class="price">Rs.299 <span class="less">-34%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('foldable-fan')">
+                    <img src="./foldable fan.avif" alt="Foldable Fan">
+                    <p class="title">Mini Desktop Foldable Fan Portable USB Rechargeable</p>
+                    <p class="price">Rs.1,599 <span class="less">-36%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('track-suit-white')">
+                    <img src="./track.avif" alt="Tracksuit">
+                    <p class="title">Billionaire printed summer track suit for men white</p>
+                    <p class="price">Rs.807 <span class="less">-46%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('soap-holder')">
+                    <img src="./soap.avif" alt="Soap Holder">
+                    <p class="title">Luxury Soap Holder with Drain Tray, Waterproof Wall Mounted</p>
+                    <p class="price">Rs.166 <span class="less">-58%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('camelo-sandals')">
+                    <img src="./sandals.avif" alt="Sandals">
+                    <p class="title">Camelo Sandals for Men Summer High-Quality Stylish</p>
+                    <p class="price">Rs.292 <span class="less">-81%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('glass-water-bottle')">
+                    <img src="./bottle.avif" alt="Glass Bottle">
+                    <p class="title">Beautiful Glass Water Bottle with Vacuum Sleeve 400 ML</p>
+                    <p class="price">Rs.345 <span class="less">-71%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('track-suit-white')">
+                    <img src="./Billionaire.avif" alt="Tracksuit">
+                    <p class="title">Billionaire printed summer track suit for men white</p>
+                    <p class="price">Rs.849 <span class="less">-43%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('mini-handheld-fan')">
+                    <img src="./Mini Fan.avif" alt="Mini Fan">
+                    <p class="title">Mini Fan Rechargeable / Handheld Desktop USB Fan</p>
+                    <p class="price">Rs.467 <span class="less">-42%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('dell-laptop-sleeve')">
+                    <img src="./Dell pro.avif" alt="Dell Sleeve">
+                    <p class="title">Dell pro Sleeve 13" Laptop Case Original</p>
+                    <p class="price">Rs.2,899 <span class="less">-47%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('bathroom-slippers')">
+                    <img src="./chapal.avif" alt="Slippers">
+                    <p class="title">Non-Slip Washroom & Bathroom Slippers for Men & Women</p>
+                    <p class="price">Rs.229 <span class="less">-62%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('chill-dumbbells')">
+                    <img src="./Dumbbells.avif" alt="Dumbbells">
+                    <p class="title">CHILL FITNESS Rubber Coated Dumbbells with Metal Handles</p>
+                    <p class="price">Rs.182 <span class="less">-70%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box" onclick="showProductDetail('screen-magnifier')">
+                    <img src="./F3 Mobile.avif" alt="Screen Magnifier">
+                    <p class="title">F3 Mobile Screen Magnifier 3D Enlarged Display Stand</p>
+                    <p class="price">Rs.460 <span class="less">-49%</span></p>
+                    <div class="mt-1">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MAIN VIEW CONTAINER 2: PRODUCT DETAILS VIEW (Screenshots 2, 3 & 4) -->
+    <main id="product-view" class="page-view" style="display: none;">
+        <!-- Dynamically rendered via script.js -->
+    </main>
+
+    <!-- MAIN VIEW CONTAINER 3: CART VIEW -->
+    <main id="cart-view" class="page-view" style="display: none;">
+        <!-- Dynamically rendered via script.js -->
+    </main>
+
+    <!-- MAIN VIEW CONTAINER 4: OFFICIAL CHECKOUT PAGE VIEW (Screenshots 1, 2 & 3 Match) -->
+    <main id="checkout-view" class="page-view" style="display: none;">
+        <!-- Dynamically rendered via script.js -->
+    </main>
+
+    <!-- MAIN VIEW CONTAINER 5: LOGIN PAGE VIEW (Screenshot Parity) -->
+    <main id="login-view" class="page-view" style="display: none;">
+        <!-- Dynamically rendered via script.js -->
+    </main>
+
+    <!-- MAIN VIEW CONTAINER 6: SIGN UP PAGE VIEW (Screenshot Parity) -->
+    <main id="signup-view" class="page-view" style="display: none;">
+        <!-- Dynamically rendered via script.js -->
+    </main>
+
+    <!-- MODAL 1: LOGIN & SIGN UP MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-dark">Welcome to Daraz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="modalLoginForm" onsubmit="handleModalLoginSubmit(event);">
+                        <div class="mb-3">
+                            <label class="form-label fs-7 fw-semibold">Phone Number or Email</label>
+                            <input type="text" id="modal-login-email" class="form-control" placeholder="Please enter your Phone or Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fs-7 fw-semibold">Password</label>
+                            <input type="password" id="modal-login-password" class="form-control" placeholder="Please enter your password" required>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3 fs-7">
+                            <a href="#" onclick="showToast('Password reset instructions sent!'); return false;" class="text-orange text-decoration-none" style="color: #f57224;">Reset Password</a>
+                        </div>
+                        <button type="submit" class="btn btn-lg w-100 text-white fw-bold py-2 mb-3" style="background-color: #f57224;">LOGIN</button>
+                        <div class="text-center text-muted fs-7">
+                            Don't have an account? <a href="#" onclick="const m = bootstrap.Modal.getInstance(document.getElementById('loginModal')); if(m) m.hide(); showSignupView(); return false;" class="text-primary text-decoration-none fw-bold">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CHECKOUT SHIPPING ADDRESS & PAYMENT FORM -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header border-0 bg-light">
+                    <h5 class="modal-title fw-bold text-dark"><i class="fa-solid fa-truck-fast text-orange me-2" style="color: #f57224;"></i>Shipping & Payment Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="checkoutForm" onsubmit="processOrder(event)">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fs-7 fw-semibold">Full Name *</label>
+                                <input type="text" id="cust-name" class="form-control" placeholder="e.g. Muhammad Ali" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fs-7 fw-semibold">Mobile Phone Number *</label>
+                                <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03001234567" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fs-7 fw-semibold">Delivery Address *</label>
+                            <textarea id="cust-address" class="form-control" rows="2" placeholder="House/Flat No., Street Address, Area, City" required></textarea>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fs-7 fw-semibold">Province / Region</label>
+                                <select class="form-select fs-7">
+                                    <option selected>Sindh</option>
+                                    <option>Punjab</option>
+                                    <option>KPK</option>
+                                    <option>Balochistan</option>
+                                    <option>Islamabad Capital Territory</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fs-7 fw-semibold">City</label>
+                                <input type="text" class="form-control" value="Karachi">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fs-7 fw-semibold mb-2">Select Payment Method</label>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <div class="form-check border p-3 rounded flex-fill cursor-pointer bg-light">
+                                    <input class="form-check-input" type="radio" name="payMode" id="payCOD" checked>
+                                    <label class="form-check-label fw-bold text-dark fs-7" for="payCOD">
+                                        <i class="fa-solid fa-money-bill-wave text-success me-1"></i> Cash on Delivery (COD)
+                                    </label>
+                                </div>
+                                <div class="form-check border p-3 rounded flex-fill cursor-pointer">
+                                    <input class="form-check-input" type="radio" name="payMode" id="payCard">
+                                    <label class="form-check-label fw-bold text-dark fs-7" for="payCard">
+                                        <i class="fa-regular fa-credit-card text-primary me-1"></i> Credit / Debit Card
+                                    </label>
+                                </div>
+                                <div class="form-check border p-3 rounded flex-fill cursor-pointer">
+                                    <input class="form-check-input" type="radio" name="payMode" id="payWallet">
+                                    <label class="form-check-label fw-bold text-dark fs-7" for="payWallet">
+                                        <i class="fa-solid fa-mobile-screen text-warning me-1"></i> JazzCash / EasyPaisa
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-lg text-white fw-bold px-4" style="background-color: #f57224;">PLACE ORDER NOW</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ORDER SUCCESS CONFIRMATION MODAL -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 text-center p-4 shadow">
+                <div class="mb-3">
+                    <i class="fa-solid fa-circle-check text-success display-3"></i>
+                </div>
+                <h4 class="fw-bold text-dark">Order Confirmed!</h4>
+                <p id="order-success-msg" class="fs-7 text-muted my-3">Your order has been placed successfully.</p>
+                <button type="button" class="btn text-white fw-bold px-4 py-2 mx-auto" style="background-color: #f57224;" data-bs-dismiss="modal" onclick="showHomeView()">CONTINUE SHOPPING</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daraz Official Footer (Consistent on Every Page - Screenshot Match) -->
+    <footer>
+        <!-- Top Footer (Customer Care, Daraz, Happy Shopping App Download) -->
+        <div class="daraz-footer-top">
+            <div class="container-fluid px-4" style="max-width: 1240px;">
+                <div class="row g-4">
+                    <!-- Column 1: Customer Care -->
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <h6 class="daraz-footer-heading">Customer Care</h6>
+                        <ul class="daraz-footer-links">
+                            <li><a href="#" onclick="showToast('Help Center'); return false;">Help Center</a></li>
+                            <li><a href="#" onclick="showToast('How to Buy Guide'); return false;">How to Buy</a></li>
+                            <li><a href="#" onclick="showToast('Corporate Purchasing'); return false;">Corporate & Bulk Purchasing</a></li>
+                            <li><a href="#" onclick="showToast('Returns & Refunds Policy'); return false;">Returns & Refunds</a></li>
+                            <li><a href="#" onclick="showToast('Daraz Shop'); return false;">Daraz Shop</a></li>
+                            <li><a href="#" onclick="showToast('Contact Us Support'); return false;">Contact Us</a></li>
+                            <li><a href="#" onclick="showToast('Purchase Protection'); return false;">Purchase Protection</a></li>
+                            <li><a href="#" onclick="showToast('Daraz Pick up Points'); return false;">Daraz Pick up Points</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Daraz -->
+                    <div class="col-lg-4 col-md-5 col-6">
+                        <h6 class="daraz-footer-heading">Daraz</h6>
+                        <ul class="daraz-footer-links">
+                            <li><a href="#" onclick="showToast('About Daraz'); return false;">About Us</a></li>
+                            <li><a href="#" onclick="showToast('Digital Payments'); return false;">Digital Payments</a></li>
+                            <li><a href="#" onclick="showToast('Daraz Donates'); return false;">Daraz Donates</a></li>
+                            <li><a href="#" onclick="showToast('Daraz Blog'); return false;">Daraz Blog</a></li>
+                            <li><a href="#" onclick="showToast('Terms & Conditions'); return false;">Terms & Conditions</a></li>
+                            <li><a href="#" onclick="showToast('Privacy Policy'); return false;">Privacy Policy</a></li>
+                            <li><span style="font-size: 12px; color: #2e2e54;">NTN Number : 4012118-6</span></li>
+                            <li><span style="font-size: 12px; color: #2e2e54;">STRN Number : 1700401211818</span></li>
+                            <li><a href="#" onclick="showToast('Online Shopping App'); return false;">Online Shopping App</a></li>
+                            <li><a href="#" onclick="showToast('Online Grocery Shopping'); return false;">Online Grocery Shopping</a></li>
+                            <li><a href="#" onclick="showToast('Daraz Exclusive'); return false;">Daraz Exclusive</a></li>
+                            <li><a href="#" onclick="showToast('Daraz University'); return false;">Daraz University</a></li>
+                            <li><a href="#" onclick="showToast('Sell on Daraz'); return false;">Sell on Daraz</a></li>
+                            <li><a href="#" onclick="showToast('Join Daraz Affiliate Program'); return false;">Join Daraz Affiliate Program</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Happy Shopping & App Download Badges -->
+                    <div class="col-lg-5 col-md-3 col-12 d-flex flex-wrap align-items-start justify-content-lg-end gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center justify-content-center" style="width: 42px; height: 42px; background-color: #e0f7fa; border-radius: 8px;">
+                                <img src="./darazlogo.png" style="width: 26px; height: 26px; object-fit: contain;" alt="Daraz App">
+                            </div>
+                            <div>
+                                <span class="d-block fw-bold" style="color: #f57224; font-size: 15px;">Happy Shopping</span>
+                                <span class="d-block fw-semibold" style="color: #2e2e54; font-size: 13px;">Download App</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <a href="#" onclick="showToast('Opening App Store'); return false;" class="btn btn-dark btn-sm d-flex align-items-center gap-2 px-3 py-1 text-start" style="background-color: #000; border: none; border-radius: 6px;">
+                                <i class="fa-brands fa-apple fs-5"></i>
+                                <div class="lh-1">
+                                    <span style="font-size: 8px;" class="d-block text-uppercase">Available on the</span>
+                                    <strong style="font-size: 12px;">App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" onclick="showToast('Opening Google Play'); return false;" class="btn btn-dark btn-sm d-flex align-items-center gap-2 px-3 py-1 text-start" style="background-color: #000; border: none; border-radius: 6px;">
+                                <i class="fa-brands fa-google-play fs-6"></i>
+                                <div class="lh-1">
+                                    <span style="font-size: 8px;" class="d-block text-uppercase">ANDROID APP ON</span>
+                                    <strong style="font-size: 12px;">Google play</strong>
+                                </div>
+                            </a>
+                            <a href="#" onclick="showToast('Opening AppGallery'); return false;" class="btn btn-dark btn-sm d-flex align-items-center gap-2 px-3 py-1 text-start" style="background-color: #000; border: none; border-radius: 6px;">
+                                <i class="fa-solid fa-bag-shopping fs-6 text-danger"></i>
+                                <div class="lh-1">
+                                    <span style="font-size: 8px;" class="d-block text-uppercase">EXPLORE IT ON</span>
+                                    <strong style="font-size: 12px;">AppGallery</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer (Payment Methods, Verified By, International, Follow Us, Copyright - Screenshot Parity) -->
+        <div class="daraz-footer-bottom">
+            <div class="container-fluid px-4" style="max-width: 1240px;">
+                <!-- Payment Methods & Verified by Row -->
+                <div class="row g-4 align-items-center mb-4">
+                    <div class="col-lg-8 col-md-9">
+                        <h6 class="daraz-footer-heading mb-2">Payment Methods</h6>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <!-- 1. Cash on Delivery -->
+                            <div class="payment-badge-card" title="Cash on Delivery">
+                                <span style="font-size: 10px; font-weight: 800; color: #00796b; line-height: 1.1; text-align: center;">CASH ON<br>DELIVERY</span>
+                            </div>
+                            <!-- 2. VISA -->
+                            <div class="payment-badge-card" title="VISA">
+                                <span style="font-size: 14px; font-weight: 900; font-style: italic; color: #1a1f71; letter-spacing: -0.5px;">VISA</span>
+                            </div>
+                            <!-- 3. Mastercard -->
+                            <div class="payment-badge-card" title="Mastercard">
+                                <div class="d-flex align-items-center gap-1">
+                                    <div style="position: relative; width: 22px; height: 14px;">
+                                        <span style="position: absolute; left: 0; top: 0; width: 14px; height: 14px; background: #eb001b; border-radius: 50%;"></span>
+                                        <span style="position: absolute; left: 8px; top: 0; width: 14px; height: 14px; background: #f79e1b; border-radius: 50%; opacity: 0.9;"></span>
+                                    </div>
+                                    <span style="font-size: 9px; font-weight: bold; color: #212121;">mastercard</span>
+                                </div>
+                            </div>
+                            <!-- 4. easypaisa -->
+                            <div class="payment-badge-card" title="Easypaisa">
+                                <div class="d-flex align-items-center gap-1">
+                                    <span style="width: 16px; height: 16px; background: #00a651; border-radius: 50%; color: #fff; font-size: 10px; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; line-height: 1;">e</span>
+                                    <span style="font-size: 10px; font-weight: bold; color: #00a651;">easypaisa</span>
+                                </div>
+                            </div>
+                            <!-- 5. Daraz Wallet -->
+                            <div class="payment-badge-card" title="Daraz Wallet">
+                                <div class="d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-wallet text-warning fs-7" style="color: #f57224 !important;"></i>
+                                    <span style="font-size: 9px; font-weight: bold; color: #f57224;">Daraz <span style="color: #212121;">Wallet</span></span>
+                                </div>
+                            </div>
+                            <!-- 6. JazzCash -->
+                            <div class="payment-badge-card" title="JazzCash">
+                                <span style="font-size: 10px; font-weight: 800; color: #e31837; font-style: italic;">Jazz<span style="color: #ffc107;">Cash</span></span>
+                            </div>
+                            <!-- 7. UnionPay -->
+                            <div class="payment-badge-card" title="UnionPay">
+                                <div class="d-flex align-items-center gap-1">
+                                    <span style="font-size: 10px; font-weight: 900; color: #003366;">UnionPay</span>
+                                </div>
+                            </div>
+                            <!-- 8. HBL -->
+                            <div class="payment-badge-card" title="Habib Bank Limited">
+                                <span style="font-size: 10px; font-weight: 800; color: #006b54;">HBL</span>
+                            </div>
+                            <!-- 9. Easy Monthly Installments -->
+                            <div class="payment-badge-card" title="Easy Monthly Installments">
+                                <span style="font-size: 9px; font-weight: bold; color: #6f42c1; text-align: center; line-height: 1.1;">Easy Monthly<br>Installments</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-3">
+                        <h6 class="daraz-footer-heading mb-2">Verified by</h6>
+                        <div class="verified-badge-card">
+                            <i class="fa-solid fa-shield-halved text-success fs-5"></i>
+                            <div class="lh-1">
+                                <strong style="font-size: 11px; color: #00796b; display: block;">PCI DSS</strong>
+                                <span style="font-size: 8px; color: #757575; font-weight: 600; text-transform: uppercase;">COMPLIANT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daraz International & Follow Us Row (Screenshot 2 Match) -->
+                <div class="row g-4 align-items-center pt-3 border-top">
+                    <div class="col-lg-6 col-md-6">
+                        <h6 class="daraz-footer-heading mb-2">Daraz International</h6>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <!-- 1. Pakistan -->
+                            <span class="country-flag-item">
+                                <span class="country-flag-circle">
+                                    <svg width="22" height="22" viewBox="0 0 22 22">
+                                        <circle cx="11" cy="11" r="10.5" fill="#00401a" stroke="#d9d9d9" stroke-width="0.5"/>
+                                        <rect x="0.5" y="0.5" width="5.5" height="21" fill="#ffffff"/>
+                                        <path d="M14 8a3.5 3.5 0 1 1-3 5 4 4 0 1 0 3-5z" fill="#ffffff"/>
+                                        <polygon points="14.5,7 15,8.2 16.2,8.2 15.2,9 15.6,10.2 14.5,9.4 13.4,10.2 13.8,9 12.8,8.2 14,8.2" fill="#ffffff"/>
+                                    </svg>
+                                </span>
+                                Pakistan
+                            </span>
+
+                            <!-- 2. Bangladesh -->
+                            <span class="country-flag-item">
+                                <span class="country-flag-circle">
+                                    <svg width="22" height="22" viewBox="0 0 22 22">
+                                        <circle cx="11" cy="11" r="10.5" fill="#006a4e" stroke="#d9d9d9" stroke-width="0.5"/>
+                                        <circle cx="9.5" cy="11" r="5" fill="#f42a41"/>
+                                    </svg>
+                                </span>
+                                Bangladesh
+                            </span>
+
+                            <!-- 3. Sri Lanka -->
+                            <span class="country-flag-item">
+                                <span class="country-flag-circle">
+                                    <svg width="22" height="22" viewBox="0 0 22 22">
+                                        <circle cx="11" cy="11" r="10.5" fill="#8d1538" stroke="#d9d9d9" stroke-width="0.5"/>
+                                        <rect x="0.5" y="0.5" width="4" height="21" fill="#ffbe29"/>
+                                        <rect x="4.5" y="0.5" width="3" height="21" fill="#ff7300"/>
+                                        <circle cx="14" cy="11" r="3.5" fill="#ffbe29"/>
+                                    </svg>
+                                </span>
+                                Sri Lanka
+                            </span>
+
+                            <!-- 4. Myanmar -->
+                            <span class="country-flag-item">
+                                <span class="country-flag-circle">
+                                    <svg width="22" height="22" viewBox="0 0 22 22">
+                                        <rect x="0" y="0" width="22" height="7.3" fill="#fecb00"/>
+                                        <rect x="0" y="7.3" width="22" height="7.3" fill="#34b233"/>
+                                        <rect x="0" y="14.6" width="22" height="7.4" fill="#ea2839"/>
+                                        <polygon points="11,3 12.5,7.5 17,7.5 13.3,10.2 14.7,14.5 11,11.8 7.3,14.5 8.7,10.2 5,7.5 9.5,7.5" fill="#ffffff"/>
+                                    </svg>
+                                </span>
+                                Myanmar
+                            </span>
+
+                            <!-- 5. Nepal -->
+                            <span class="country-flag-item">
+                                <span class="country-flag-circle">
+                                    <svg width="22" height="22" viewBox="0 0 22 22">
+                                        <rect width="22" height="22" fill="#ffffff"/>
+                                        <polygon points="3,2 17,10 8,10 19,20 3,20" fill="#dc143c" stroke="#003893" stroke-width="1"/>
+                                        <circle cx="8" cy="7" r="1.5" fill="#ffffff"/>
+                                        <path d="M7 14a2 2 0 0 0 3 0" stroke="#ffffff" fill="none"/>
+                                    </svg>
+                                </span>
+                                Nepal
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Follow Us Section (Matches Screenshot 2) -->
+                    <div class="col-lg-4 col-md-4">
+                        <h6 class="daraz-footer-heading mb-2">Follow Us</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="https://www.facebook.com/darazpk" target="_blank" rel="noopener noreferrer" class="social-icon-circle social-facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/darazpk" target="_blank" rel="noopener noreferrer" class="social-icon-circle social-x" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/darazpk/" target="_blank" rel="noopener noreferrer" class="social-icon-circle social-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/c/DarazPK" target="_blank" rel="noopener noreferrer" class="social-icon-circle social-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="col-lg-2 col-md-2 text-md-end">
+                        <span style="font-size: 13px; color: #757575; font-weight: 400;">© Daraz 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Messages Widget Box (Bottom Right - Matches Screenshot) -->
+    <a href="https://member.daraz.pk/user/message/index" target="_blank" rel="noopener noreferrer" class="floating-messages-widget text-decoration-none" title="Open Daraz Instant Messaging & Chat">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-message text-primary fs-5" style="color: #0084ff !important;"></i>
+            <strong class="text-dark fs-7">Messages</strong>
+        </div>
+    </a>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Separate JavaScript File -->
+    <script src="script.js"></script>
+</body>
+
+</html>

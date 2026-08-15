@@ -1,0 +1,307 @@
+/* SB Admin 2 Style - Custom CSS Theme for Daraz E-Commerce Admin Panel */
+
+:root {
+    --primary-color: #4e73df;
+    --primary-dark: #2e59d9;
+    --secondary-color: #858796;
+    --success-color: #1cc88a;
+    --info-color: #36b9cc;
+    --warning-color: #f6c23e;
+    --danger-color: #e74a3b;
+    --dark-color: #5a5c69;
+    --light-bg: #f8f9fc;
+    --sidebar-bg: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    --topbar-height: 70px;
+    --sidebar-width: 240px;
+    --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    color: #5a5c69;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Layout Wrapper */
+#wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling - SB Admin 2 */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    min-height: 100vh;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 100;
+}
+
+.sidebar .sidebar-brand {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.05rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .sidebar-brand-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.sidebar .nav-item {
+    position: relative;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar .nav-link i {
+    font-size: 1rem;
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-heading {
+    padding: 1.2rem 1.25rem 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-uppercase: uppercase;
+}
+
+.sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0.5rem 1rem;
+}
+
+/* Content Wrapper */
+#content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-column: column;
+    min-width: 0;
+    background-color: var(--light-bg);
+}
+
+/* Topbar Styling */
+.topbar {
+    height: var(--topbar-height);
+    background-color: #ffffff;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: 90;
+}
+
+.topbar .nav-item .nav-link {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    color: #d1d3e2;
+}
+
+.topbar .nav-item .nav-link:hover {
+    color: #b7b9cc;
+}
+
+.topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.topbar .user-name {
+    font-weight: 700;
+    color: #5a5c69;
+    font-size: 0.85rem;
+}
+
+.topbar .img-profile {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* SB Admin 2 Cards */
+.card-admin {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-admin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.15);
+}
+
+/* SB Admin 2 Colored Left Border Cards */
+.border-left-primary {
+    border-left: 0.25rem solid var(--primary-color) !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid var(--success-color) !important;
+}
+
+.border-left-info {
+    border-left: 0.25rem solid var(--info-color) !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid var(--warning-color) !important;
+}
+
+.border-left-danger {
+    border-left: 0.25rem solid var(--danger-color) !important;
+}
+
+.text-xs {
+    font-size: 0.7rem;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.text-gray-300 {
+    color: #dddfeb !important;
+}
+
+.text-gray-800 {
+    color: #5a5c69 !important;
+}
+
+/* Tables */
+.table-responsive {
+    border-radius: 0.35rem;
+}
+
+.table-admin {
+    width: 100%;
+    margin-bottom: 0;
+    color: #5a5c69;
+    vertical-align: middle;
+}
+
+.table-admin th {
+    background-color: #f8f9fc;
+    color: #4e73df;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05rem;
+    padding: 1rem;
+    border-bottom: 2px solid #e3e6f0;
+}
+
+.table-admin td {
+    padding: 1rem;
+    border-bottom: 1px solid #e3e6f0;
+    font-size: 0.85rem;
+}
+
+.table-admin tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.04);
+}
+
+/* Product Image Thumbnails */
+.product-img-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e3e6f0;
+}
+
+/* Badges */
+.badge-status {
+    padding: 0.35em 0.65em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 0.25rem;
+}
+
+.badge-pending {
+    background-color: #f6c23e;
+    color: #2e2d00;
+}
+
+.badge-processing {
+    background-color: #36b9cc;
+    color: #ffffff;
+}
+
+.badge-shipped {
+    background-color: #4e73df;
+    color: #ffffff;
+}
+
+.badge-completed, .badge-delivered {
+    background-color: #1cc88a;
+    color: #ffffff;
+}
+
+.badge-cancelled {
+    background-color: #e74a3b;
+    color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #4e73df;
+    border-radius: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        margin-left: -240px;
+    }
+    .sidebar.toggled {
+        margin-left: 0;
+    }
+}

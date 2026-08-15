@@ -1,0 +1,971 @@
+/* Daraz PK Custom Design Tokens & Styles */
+
+:root {
+    --daraz-orange: rgb(242, 83, 25);
+    --daraz-dark-orange: #d04310;
+    --daraz-light-peach: #ffe1d2;
+    --daraz-cyan: #00afe1;
+    --daraz-dark: #212121;
+    --daraz-light-gray: #f5f5f5;
+    --daraz-border: #e2e2e2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Roboto, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: #212121;
+}
+
+/* Single Unified Navbar (Screenshot 1 Exact Match) */
+.topbar {
+    background: var(--daraz-orange);
+    padding: 6px 30px 12px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.topbar-utility-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    font-size: 11px;
+    padding-bottom: 4px;
+}
+
+.topbar-utility-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s ease;
+}
+
+.topbar-utility-links a:hover {
+    opacity: 0.85;
+    color: #ffffff;
+}
+
+.topbar-main-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.brand {
+    color: white;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Search Bar Wrapper */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    width: 680px;
+    max-width: 100%;
+    margin-top: 12px;
+}
+
+.search-box-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search {
+    flex: 1;
+    height: 42px;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    padding: 0 16px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-btn-icon {
+    width: 48px;
+    height: 42px;
+    border: none;
+    outline: none;
+    background-color: var(--daraz-light-peach);
+    color: var(--daraz-orange);
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.search-btn-icon:hover {
+    background-color: #ffd2be;
+}
+
+/* Quick Search Suggestions under input (Visible only on Product Details Page) */
+.search-quick-tags {
+    display: none;
+    gap: 12px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.search-quick-tags span {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.search-quick-tags span:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Navbar Right Icons & Cart Badge */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+}
+
+.nav-link-btn {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.cart-icon-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 28px;
+}
+
+.cart-icon-wrapper i {
+    color: white;
+    font-size: 26px;
+    transition: transform 0.2s;
+}
+
+.cart-icon-wrapper:hover i {
+    transform: scale(1.1);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: #ffffff;
+    color: var(--daraz-orange);
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--daraz-orange);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Categories Sub-Header Bar (Below Topbar) */
+.sub-categories-bar {
+    background-color: white;
+    border-bottom: 1px solid var(--daraz-border);
+    padding: 8px 30px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.categories-dropdown-btn {
+    color: #212121;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Section Wrapper */
+.section {
+    background: white;
+    margin: 15px 20px;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.section-header span {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--daraz-orange);
+}
+
+.section-header button {
+    border: 1px solid var(--daraz-orange);
+    background: white;
+    color: var(--daraz-orange);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.section-header button:hover {
+    background: var(--daraz-orange);
+    color: white;
+}
+
+/* Products Grid Layout */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.just-for-you {
+    width: 98%;
+    margin: 15px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+/* Product Box Card & Hover Effects (Daraz Style) */
+.box {
+    width: 100%;
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Product Card Hover Effect Requirement */
+.box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border-color: var(--daraz-orange);
+}
+
+.box img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+.box:hover img {
+    transform: scale(1.03);
+}
+
+.title {
+    font-size: 13px;
+    color: #212121;
+    padding: 6px 2px;
+    height: 38px;
+    overflow: hidden;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: color 0.2s;
+}
+
+.box:hover .title {
+    color: var(--daraz-orange);
+}
+
+.price {
+    color: var(--daraz-orange);
+    padding-left: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.old-price {
+    padding-left: 2px;
+    font-size: 12px;
+    color: #9e9e9e;
+    text-decoration: line-through;
+}
+
+.discount {
+    color: #212121;
+    margin-left: 4px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.less {
+    color: #212121;
+    font-size: 11px;
+}
+
+/* Categories Grid */
+.categories {
+    width: 98%;
+    margin: 15px auto;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cat {
+    height: 150px;
+    background: white;
+    text-align: center;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-top: 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.cat:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    z-index: 10;
+}
+
+.cat img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.cat p {
+    font-size: 13px;
+    color: #212121;
+    margin-top: 10px;
+    line-height: 1.2;
+    padding: 0 8px;
+}
+
+/* Stars Icons Styling */
+.fa-star,
+.fa-star-half-stroke {
+    color: #faca51;
+    font-size: 11px;
+}
+
+h1.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #424242;
+}
+
+/* Product Detail & Thumbnails Helper Styles */
+.thumb-img {
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.thumb-img:hover {
+    transform: scale(1.05);
+}
+
+.border-orange {
+    border: 2px solid var(--daraz-orange) !important;
+}
+
+.bg-light-gray {
+    background-color: #fafafa;
+    border: 1px solid #f0f0f0;
+}
+
+.fs-7 {
+    font-size: 0.875rem !important;
+}
+
+.fs-8 {
+    font-size: 0.775rem !important;
+}
+
+.fs-9 {
+    font-size: 0.7rem !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Toast Container Z-Index */
+#toast-container {
+    z-index: 99999 !important;
+}
+
+/* Promotional Advertisement Banner Section (Exact Screenshot Match - Sharp Corners & Flush Alignment) */
+.promo-banner-wrapper {
+    max-width: 1240px;
+    margin: 10px auto 15px auto;
+}
+
+.hero-banner-card {
+    height: 350px;
+    background-color: #00a651;
+    border-radius: 0 !important;
+    position: relative;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.hero-banner-card img {
+    height: 310px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 !important;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.hero-banner-card:hover img {
+    transform: scale(1.01);
+}
+
+.carousel-dots-indicator .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.carousel-dots-indicator .dot.active,
+.carousel-dots-indicator .dot:hover {
+    background-color: #ffffff;
+    width: 20px;
+    border-radius: 10px;
+}
+
+/* Try Daraz App Card (Square 90-degree corners, perfectly flush with main banner) */
+.daraz-app-card {
+    border: 1px solid #e2e2e2;
+    height: 310px;
+    border-radius: 0 !important;
+    background-color: #ffffff;
+    padding: 12px;
+}
+
+.app-feature-card {
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+.app-feature-card .bg-white span {
+    color: #212121 !important;
+    font-weight: 700 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .categories {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .search-container {
+        margin-left: 15px;
+    }
+
+    .hero-banner-card,
+    .hero-banner-card img {
+        height: 240px;
+    }
+
+    .daraz-app-card {
+        height: 240px;
+    }
+}
+
+@media (max-width: 576px) {
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .topbar {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+
+    .search-container {
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .hero-banner-card {
+        height: 180px;
+    }
+}
+
+/* Exact Daraz Official Footer Styling (Matches Screenshot 1 & 2) */
+.daraz-footer-top {
+    background-color: #e3e4e9;
+    padding: 32px 0 24px 0;
+    color: #2e2e54;
+    border-top: 2px solid #cecfd6;
+}
+
+.daraz-footer-bottom {
+    background-color: #ffffff;
+    padding: 28px 0 24px 0;
+    color: #2e2e54;
+    border-top: 1px solid #eaeaef;
+}
+
+.daraz-footer-heading {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2e2e54;
+    margin-bottom: 12px;
+}
+
+.daraz-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.daraz-footer-links li {
+    margin-bottom: 4px;
+}
+
+.daraz-footer-links a {
+    color: #2e2e54;
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.daraz-footer-links a:hover {
+    color: #f57224;
+    text-decoration: underline;
+}
+
+/* Exact Daraz Official Footer Badges & Country Flags (Matches Screenshot 100%) */
+.payment-badge-card {
+    height: 32px;
+    padding: 2px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.verified-badge-card {
+    height: 34px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    padding: 3px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.country-flag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #555555;
+    margin-right: 22px;
+    margin-bottom: 6px;
+}
+
+.country-flag-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.country-flag-circle svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.social-icon-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    font-size: 15px;
+    text-decoration: none !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icon-circle:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.social-facebook {
+    background-color: #1877f2;
+}
+
+.social-x {
+    background-color: #000000;
+}
+
+.social-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285ae6 90%);
+}
+
+.social-youtube {
+    background-color: #ff0000;
+}
+
+/* Floating Messages Widget */
+.floating-messages-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    z-index: 99999;
+    background: #ffffff;
+    border: 1px solid #cfd3dc;
+    border-radius: 6px;
+    padding: 8px 18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-messages-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+    text-decoration: none !important;
+}
+
+/* Product Details Action Buttons (Buy Now & Add to Cart) - Square Sharp Corners & Smooth Hover Effects */
+.btn-buy-now {
+    flex: 1;
+    height: 48px;
+    background-color: #00afe1 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 14px;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease, filter 0.2s ease !important;
+}
+
+.btn-buy-now:hover {
+    background-color: #008eb7 !important;
+    box-shadow: 0 6px 16px rgba(0, 175, 225, 0.4) !important;
+    filter: brightness(1.05);
+    cursor: pointer;
+}
+
+.btn-buy-now:active {
+    transform: translateY(1px);
+}
+
+.btn-add-to-cart {
+    flex: 1;
+    height: 48px;
+    background-color: #f57224 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 14px;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease, filter 0.2s ease !important;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #d85c14 !important;
+    box-shadow: 0 6px 16px rgba(245, 114, 36, 0.4) !important;
+    filter: brightness(1.05);
+    cursor: pointer;
+}
+
+.btn-add-to-cart:active {
+    transform: translateY(1px);
+}
+
+/* Order Summary Voucher & Checkout Buttons (Matches Screenshot Parity) */
+.btn-apply-voucher {
+    height: 40px;
+    background-color: #25a5d8 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, opacity 0.2s ease !important;
+}
+
+.btn-apply-voucher:hover {
+    background-color: #1d8bb7 !important;
+    opacity: 0.95;
+    cursor: pointer;
+}
+
+.btn-proceed-checkout {
+    height: 44px;
+    background-color: #f57224 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, opacity 0.2s ease !important;
+}
+
+.btn-proceed-checkout:hover:not(:disabled) {
+    background-color: #d85c14 !important;
+    opacity: 0.95;
+    cursor: pointer;
+}
+
+.btn-proceed-checkout:disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Official Daraz Checkout Page Styling (Matches Screenshots 1, 2 & 3) */
+.checkout-card {
+    background-color: #ffffff;
+    border: 1px solid #eaeaef;
+    border-radius: 0 !important;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.checkout-label-btn {
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    background-color: #ffffff;
+    color: #555555;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.checkout-label-btn.active-office {
+    border-color: #25a5d8 !important;
+    background-color: #e0f7fa !important;
+    color: #25a5d8 !important;
+}
+
+.checkout-label-btn.active-home {
+    border-color: #f57224 !important;
+    background-color: #fbe9e7 !important;
+    color: #f57224 !important;
+}
+
+.checkout-input,
+.checkout-select {
+    height: 38px;
+    border-radius: 0 !important;
+    border: 1px solid #d9d9d9;
+    font-size: 13px;
+    color: #212121;
+    box-shadow: none !important;
+}
+
+.checkout-input:focus,
+.checkout-select:focus {
+    border-color: #25a5d8 !important;
+}
+
+.checkout-field-label {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.package-delivery-option {
+    border: 1px solid #25a5d8;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 12px 16px;
+    display: inline-block;
+    min-width: 200px;
+}
+
+.package-delivery-check {
+    width: 18px;
+    height: 18px;
+    background-color: #25a5d8;
+    color: #ffffff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.btn-proceed-pay {
+    height: 44px;
+    background-color: #f57224 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    transition: background-color 0.2s ease !important;
+}
+
+.btn-proceed-pay:hover {
+    background-color: #d85c14 !important;
+    cursor: pointer;
+}
+
+/* Auth Pages Styling (Login & Sign Up - Screenshot Parity) */
+.auth-wrapper {
+    background-color: #eff0f5;
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0 !important;
+    padding: 35px 40px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.auth-tab {
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f57224;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.auth-input {
+    height: 42px;
+    border-radius: 0 !important;
+    border: 1px solid #d9d9d9;
+    font-size: 14px;
+    color: #212121;
+}
+
+.auth-input:focus {
+    border-color: #f57224 !important;
+    box-shadow: none !important;
+}
+
+.auth-btn-orange {
+    height: 44px;
+    background-color: #f57224 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease !important;
+}
+
+.auth-btn-orange:hover {
+    background-color: #d85c14 !important;
+}
+
+.auth-social-btn {
+    height: 40px;
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 0 !important;
+    background-color: #ffffff;
+    color: #555555;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.auth-social-btn:hover {
+    background-color: #f8f9fa;
+}
